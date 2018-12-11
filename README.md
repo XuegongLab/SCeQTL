@@ -7,7 +7,8 @@
 
 SCeQTL is an R package that uses zero-inflated negative binomial regression to do eQTL analysis on single-cell data. It can distinguish two type of gene-expression differences among different genotype groups. It’s more suitable to use SCeQTL to identify eQTLs from single-cell data. It can also be used for finding gene expression variations associated with other grouping factors like cell lineages. Following is the detail information and usage of this program. You can also found them in READ.ME. [R
 Packages](http://r-pkgs.had.co.nz/) is a book based around this workflow.
-
+## Authors
+Hu Yue <y-hu10@qq.com>
 ## Installation
 
 ```r
