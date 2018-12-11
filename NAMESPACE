@@ -1,0 +1,6 @@
+exportPattern("^[[:alpha:]]+")
+importFrom("ggplot2","ggplot","aes","geom_violin","facet_grid","geom_boxplot","geom_histogram")
+importFrom("qvalue","qvalue")
+importFrom("pscl","zeroinfl")
+importFrom("foreach","foreach","%dopar%")
+importFrom("doParallel","registerDoParallel")

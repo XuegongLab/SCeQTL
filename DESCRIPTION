@@ -1,0 +1,15 @@
+Package: SCeQTL
+Type: Package
+Title: single cell expression QTL mapping tool
+Version: 0.1.0
+Authors@R: person("Yue", "HU", email = "huyue14@mails.tsinghua.edu.cn", role = c("aut", "cre"))
+Description: More about what it does (maybe more than one line)
+License: GPL-2
+LazyData: TRUE
+Imports: qvalue, ggplot2, doParallel, pscl, foreach
+Depends: qvalue, ggplot2, doParallel, pscl, foreach, parallel,
+        iterators
+Author: Yue HU [aut, cre]
+Maintainer: Yue HU <huyue14@mails.tsinghua.edu.cn>
+NeedsCompilation: no
+Packaged: 2017-04-17 06:45:21 UTC; yhu
