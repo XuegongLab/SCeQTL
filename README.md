@@ -10,8 +10,8 @@ Packages](http://r-pkgs.had.co.nz/) is a book based around this workflow.
 ## Authors
 Hu Yue <y-hu10@qq.com>
 ## Version
-For **Windows**:SCeQTL.zip(http://)
-For **Linux and Mac**:SCeQTL.tar.gz(http://)
+For **Windows**:[SCeQTL.zip](http://)
+For **Linux and Mac**:[SCeQTL.tar.gz](http://)
 ## Installation
 
 ```r
