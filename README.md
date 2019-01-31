@@ -14,7 +14,7 @@ Hu Yue <y-hu10@qq.com>
 
 For **Windows**:[SCeQTL.zip](http://github.com/XuegongLab/SCeQTL/tree/master/sourcefile/SCeQTL_0.1.0.zip)
 
-For **Linux and Mac**:[SCeQTL.tar.gz](http://github.com/XuegongLab/SCeQTL/tree/master/sourcefile/SCeQTL_0.1.0.tar.gz)
+For **Linux and Mac**:[SCeQTL.tar.gz](http://github.com/XuegongLab/SCeQTL/tree/master/sourcefile/SCeQTL_0.2.0.tar.gz)
 
 ## Installation
 
