@@ -91,22 +91,24 @@ data(test)
 Boxplot
 
 ---
-<img src="/man/figures/boxplot.png" align="center" height = 400 width=400/>
+<div align=center><img src="/man/figures/boxplot.png"   height = 400 width=400/></div>
 
 qqplot
 
 ---
-<img src="/man/figures/qqplot.png" align="center" height = 400 width=400/>
+<div align=center><img src="/man/figures/qqplot.png" align="center" height = 400 width=400/></div>
 
 Histplot 
 
 ---
-<img src="/man/figures/histplot.png" align="center" height = 400 width=400/>
+<div align=center><img src="/man/figures/histplot.png" align="center" height = 400 width=400/></div>
 
 violinplot
 
 ---
-<img src="/man/figures/violinplot.png" align="center" height = 400 width=400/>
+<div align=center><img src="/man/figures/violinplot.png" align="center" height = 400 width=400/></div>
+
+
 ## Code of conduct
 
 Please note that the SCeQTL project is released with a [Contributor Code of Conduct](.github/CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.
