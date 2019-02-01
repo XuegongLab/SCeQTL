@@ -91,7 +91,7 @@ data(test)
 boxplot
 
 ---
-<img src="/man/figures/boxplot.png" align="mid" height =  150 width= 150/>
+<img src="/man/figures/boxplot.png" align="mid" height = 400 width=400/>
 
 ## Code of conduct
 
