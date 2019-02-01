@@ -86,7 +86,7 @@ SCeQTL::check.sample <- function(sample_gene, sample_SNV, plottype='boxplot', re
 
 data(test)
 
-### Output Expample
+### Output Example
 
 Boxplot
 
