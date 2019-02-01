@@ -84,7 +84,7 @@ SCeQTL::check.sample <- function(sample_gene, sample_SNV, plottype='boxplot', re
 **2.** * `SNV matrix`                 should be named as “snp”, where one row indicate one variant and one column indicate one sample.
 ### Test data:
 
-You can find test data here.
+data(test)
 
 ## Code of conduct
 
