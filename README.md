@@ -91,7 +91,7 @@ data(test)
 boxplot
 
 ---
-<img src="https://github.com/XuegongLab/SCeQTL/tree/master/man/figures/boxplot.png" align="mid" height =  150 width= 150/>
+<img src="/man/figures/boxplot.png" align="mid" height =  150 width= 150/>
 
 ## Code of conduct
 
