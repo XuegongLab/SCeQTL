@@ -1,6 +1,7 @@
 exportPattern("^[[:alpha:]]+")
-importFrom("ggplot2","ggplot","aes","geom_violin","facet_grid","geom_boxplot","geom_histogram")
+importFrom("ggplot2","ggplot","aes","geom_violin","facet_grid","geom_boxplot","geom_histogram","xlim","ylim","geom_path")
 importFrom("qvalue","qvalue")
 importFrom("pscl","zeroinfl")
 importFrom("foreach","foreach","%dopar%")
 importFrom("doParallel","registerDoParallel")
+importFrom("stats", "approx", "logLik", "mad", "median", "pchisq", "rnbinom", "sd")
