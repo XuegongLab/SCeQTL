@@ -88,11 +88,25 @@ data(test)
 
 ### Output Expample
 
-boxplot
+Boxplot
 
 ---
-<img src="/man/figures/boxplot.png" align="mid" height = 400 width=400/>
+<img src="/man/figures/boxplot.png" align="center" height = 400 width=400/>
 
+qqplot
+
+---
+<img src="/man/figures/qqplot.png" align="center" height = 400 width=400/>
+
+Histplot 
+
+---
+<img src="/man/figures/histplot.png" align="center" height = 400 width=400/>
+
+violinplot
+
+---
+<img src="/man/figures/violinplot.png" align="center" height = 400 width=400/>
 ## Code of conduct
 
 Please note that the SCeQTL project is released with a [Contributor Code of Conduct](.github/CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.
