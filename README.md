@@ -19,6 +19,9 @@ For **Linux and Mac**:[SCeQTL.tar.gz](http://github.com/XuegongLab/SCeQTL/tree/m
 ## Installation
 
 ```r
+#recommand installation
+
+devtools::install_github("XuegongLab/SCeQTL")
 #You can download the R package from here and run the command in R:
 
 install.packages(<source_code_file>, repos=NULL, type="source")
