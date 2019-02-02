@@ -1,9 +1,5 @@
 # SCeQTL <img src="https://github.com/sunfenghao2017/logo/blob/master/logo.png" align="right" height =  50 width= 150/>
 
-[![Build Status](https://travis-ci.org/r-lib/devtools.svg?branch=master)](https://travis-ci.org/r-lib/SCeQTL)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/r-lib/SCeQTL?branch=master&svg=true)](https://ci.appveyor.com/project/hadley/SCeQTL)
-[![Coverage Status](https://codecov.io/github/r-lib/SCeQTL/coverage.svg?branch=master)](https://codecov.io/github/r-lib/SCeQTL?branch=master)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/SCeQTL)](https://cran.r-project.org/package=SCeQTL)
 
 SCeQTL is an R package that uses zero-inflated negative binomial regression to do eQTL analysis on single-cell data. It can distinguish two type of gene-expression differences among different genotype groups. It’s more suitable to use SCeQTL to identify eQTLs from single-cell data. It can also be used for finding gene expression variations associated with other grouping factors like cell lineages. Following is the detail information and usage of this program. You can also found them in READ.ME. [R
 Packages](http://r-pkgs.had.co.nz/) is a book based around this workflow.
@@ -98,6 +94,7 @@ SCeQTL::cal.qvalue(gene[1:10,], snp)
  The result is like the picture below. 
 
 ![result](./data/result.png)
+
 Then you may interested in the significant gene-snp pairs. You could stat and visualize it by `check.sample`. Here take the most significant pair for example.
 
 ```{r demo1, eval = FALSE}
