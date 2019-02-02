@@ -10,24 +10,22 @@ Packages](http://r-pkgs.had.co.nz/) is a book based around this workflow.
 ## Authors
 Hu Yue <y-hu10@qq.com>
 
-## Version
-
-For **Windows**:[SCeQTL.zip](http://github.com/XuegongLab/SCeQTL/tree/master/sourcefile/SCeQTL_0.1.0.zip)
-
-For **Linux and Mac**:[SCeQTL.tar.gz](http://github.com/XuegongLab/SCeQTL/tree/master/sourcefile/SCeQTL_0.2.0.tar.gz)
 
 ## Installation
 
+To install the developmental version from [GitHub](https://github.com/XuegongLab/SCeQTL):
+
 ```r
-#recommand installation
-
+if(!require(devtools)) install.packages("devtools")
 devtools::install_github("XuegongLab/SCeQTL")
-#You can download the R package from here and run the command in R:
-
-install.packages(<source_code_file>, repos=NULL, type="source")
-
-
 ```
+
+To install from source package, you could download the R package from [Mac and Linux version](http://github.com/XuegongLab/SCeQTL/tree/master/sourcefile/SCeQTL_0.2.0.tar.gz) or [Windows version](http://github.com/XuegongLab/SCeQTL/tree/master/sourcefile/SCeQTL_0.2.0.zip) and run the command in R:
+
+```r
+install.packages(<source_code_file>, repos=NULL, type="source")
+```
+
 ## Requirement
 
 ### Prerequisite(R-packages): 
@@ -36,78 +34,134 @@ install.packages(<source_code_file>, repos=NULL, type="source")
        doParallel
        pscl
 
-## Function:
+## Input:
 
-The function of this program is to test the correlation between gene splicing expression and gene variants.
+**`SCeQTL`** takes two inputs: `gene` and `snp`.
 
-**input**: Rdata which include gene expression matrix and SNV matrix
+The input `gene` is a scRNA-seq **raw read counts matrix**. The rows of the matrix are genes and columns are cells.
 
-**output**: P value or q value of gene-SNV pairs
+The other input `snp` is a **genotype matrix**, where each element should be 0/1/2 indicating three types of genotypes. The order of columns should be the same with `gene`.
+
+## TestData:
+Users can load the test data in **`SCeQTL`** by
+
+```{r Load TestData}
+library(SCeQTL)
+data(test)
+```
+
+The toy data `gene` in `test` is a scRNA-seq read counts matrix which has 151 genes (rows) and 1529 cells (columns).
+
+```{r gene}
+dim(gene)
+gene[1:6, 1:6]
+```
+
+The object `snp` in `test` is a matrix of genotype which has three levels and equal length to the column number of `snp`.
+
+```{r group}
+dim(snp)
+snp[1:6, 1:6]
+```
+
 
 ## Usage
-```r
-SCeQTL:: cal.pvalue <- function(gene, SNV, thread = 8, remove_outlier = TRUE,EM = TRUE, dist = 'negbin', type = 0)
 
-#Calculatre and return P value of gene-SNV pairs.
-```
+Here is an example to run **`SCeQTL`** with read counts matrix input:
 
-* `thread`: number of threads that are used.
-
-* `remove_outlier`: whether program should remove samples whose expression level are far away from the others(>median+4*mad)
-
-* `EM`: use EM or BGFS to optimaize
-
-* `Dist`: distribution assumption, could be negative binomial or Poisson
-
-* `type`: which kind of difference you are interested in. type 0 means non-zero part difference, type 1 means zero ratio difference, type 2 means at least one or non-zero part or zero ratio difference
-
- 
-```r
-SCeQTL::checkdist(gene, n=10)
-
-#The function samples n gene expressions, draw normalized QQ-plot to compare real gene distribution with fitted gene distribution. The function is used for checking whether non-zero part of the data fit negative binomial distribution well.
-```
- 
-```r
-SCeQTL::check.sample <- function(sample_gene, sample_SNV, plottype='boxplot', removeZero = TRUE)
-
-#Print statistic and visualize one gene-SNV pair.
-```
-### Input format:
-
-
-**Rdata** which stored the **gene expression matrix** and **SNV matrix**.
-    
----
-**1.** * `Gene expression matrix`   should be named as “gene”, where one row indicate one gene and one column indicate one sample.
- 
-**2.** * `SNV matrix`                 should be named as “snp”, where one row indicate one variant and one column indicate one sample.
-### Test data:
-
+```{r demo1, eval = FALSE}
+# Load library and the test data for SCeQTL
+library(SCeQTL)
 data(test)
 
-### Output Example
+# check whether the non-zero part could fit negative binomial well
+# This function may fail since It's possible that the random picked gene can't be fit to negative bionomial distribution, all zero value for example
+checkdist(gene)
 
-Boxplot
+# normalize gene matrix using DEseq method
+normalize(gene)
 
----
-<div align=center><img src="/man/figures/boxplot.png"   height = 400 width=400/></div>
+# Detecting the SCeQTL
+result <- cal.pvalue(gene, snp)
 
-qqplot
+# Picking one sample to visualize
+check.sample(gene[1,], snp[1,])
+```
 
----
-<div align=center><img src="/man/figures/qqplot.png" align="center" height = 400 width=400/></div>
+## Output
+SCeQTL will output the p-value of each gene-snp pair. You could also get q-value by running `cal.qvalue(gene, snp)` instead of `cal.pvalue(gene, snp)`.
 
-Histplot 
+```{r demo1, eval = FALSE}
+SCeQTL::cal.qvalue(gene[1:10,], snp)
+```
 
----
-<div align=center><img src="/man/figures/histplot.png" align="center" height = 400 width=400/></div>
+ The result is like the picture below. 
 
-violinplot
+![result](./data/result.png)
+Then you may interested in the significant gene-snp pairs. You could stat and visualize it by `check.sample`. Here take the most significant pair for example.
 
----
-<div align=center><img src="/man/figures/violinplot.png" align="center" height = 400 width=400/></div>
+```{r demo1, eval = FALSE}
+SCeQTL::check.sample(gene[rownames(gene)=='ARID3A',], snp[10,])
+```
 
+Then you could get the statistic about the pair and a boxplot showing the relationship.
+
+```
+zero ratio of group 0 0.08074534 
+zero ratio of group 1 0.05660377 
+zero ratio of group 2 0.07674419 
+mean of group 0:  105.6087 
+mean of group 1:  120.1486 
+mean of group 2:  134.3442 
+non-zero part mean of group 0:  114.8851 
+non-zero part mean of group 1:  127.3575 
+non-zero part mean of group 2:  145.5113 
+non-zero part standard error of group 0:  129.1127 
+non-zero part standard error of group 1:  144.3739 
+non-zero part standard error of group 2:  150.4358 
+```
+![boxplot](./data/boxplot.png)
+
+Before run `cal.qvalue`, you may want to check whether the distribution fit the bionomial negative assumption well by `checkdist`
+
+```
+checkdist(gene)
+```
+
+A Q-Q plot will be shown. It will randomly pick some genes so you may get different kind of result.
+
+![QQplot](./data/dist.png)
+
+## Help
+
+
+Use the following code in R to get access to the help documentation for **`DEsingle`**:
+
+```{r help1, eval = FALSE}
+# Documentation for checking and preparing gene expression dataset
+?checkdist
+?normalize
+```
+
+```{r help1, eval = FALSE}
+# Documentation for finding single cell eQTL
+?cal.pvalue
+?cal.qvalue
+```
+
+```{r help2, eval = FALSE}
+# Documentation for checking single gene-snp pair
+?check.sample
+```
+
+```{r help3, eval = FALSE}
+# Documentation for TestData
+?test
+?snp
+?group
+```
+
+You are also welcome to contact the author by email for help.
 
 ## Code of conduct
 
