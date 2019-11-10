@@ -56,20 +56,26 @@ cal.pvalue <- function(gene, snp, thread = 8, remove_outlier = TRUE,EM = TRUE, d
         }
         return(pchisq(2 * (logLik(m1) - logLik(m0)), df = .df, lower.tail=FALSE))
     }
-    registerDoParallel(thread)
-    countzero <- rowSums(gene != 0)
-    gene <- gene[countzero > 3,]
-    gene.count = dim(gene)[1]
-    snp.count = dim(snp)[1]
-    pvalue = list()
-    j = 0
     if (type == 0) 
         message("Identyfing non-zero part difference...\n")
     else if (type == 1) 
         message("Identyfing zero ratio difference...\n")
     else 
         message("Identyfing non-zero part or/and zero ratio difference...\n")
-    message("starting calculating p value...\n")
+    registerDoParallel(thread)
+    countzero <- rowSums(gene != 0)
+    gene <- gene[countzero > 3,]
+    removed <- labels(countzero)[countzero <= 3]
+    if (length(removed) != 0)
+        cat('Gene: ', removed, 'removed because of excess zero.\n')
+    else 
+        print('No gene was removed because of excess zero.\n')
+    if (nrow(gene) == 0) stop('No gene to be tested.')
+    gene.count = dim(gene)[1]
+    snp.count = dim(snp)[1]
+    pvalue = list()
+    j = 0
+    message("Start calculating p value...\n")
     for(i in 1:gene.count){
         message(paste0("calculate pvalue for gene: ", i, "\n"))
         result = foreach(j=1:snp.count) %dopar% {zeroinfl_model(gene[i,],snp[j,],remove_outlier=remove_outlier,dist=dist,EM=EM,type=type)}
