@@ -67,9 +67,9 @@ cal.pvalue <- function(gene, snp, thread = 8, remove_outlier = TRUE,EM = TRUE, d
     gene <- gene[countzero > 3,]
     removed <- labels(countzero)[countzero <= 3]
     if (length(removed) != 0)
-        message('Gene: ', removed, ' removed because of excess zero.\n')
+        cat('Gene:', removed, 'removed because of excess zero.\n')
     else 
-        message('No gene was removed because of excess zero.\n')
+        cat('No gene was removed because of excess zero.\n')
     if (nrow(gene) == 0) stop('No gene to be tested.')
     gene.count = dim(gene)[1]
     snp.count = dim(snp)[1]
