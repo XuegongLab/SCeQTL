@@ -60,7 +60,7 @@ cal.pvalue <- function(gene, snp, thread = 8, remove_outlier = TRUE,EM = TRUE, d
             return(NA)
           .df <- 2
         }
-        pvalue = try(pchisq(2 * (logLik(m1) - logLik(m0)), df = .df, lower.tail=FALSE), silent = TRUE)
+        pvalue = try(pchisq(2 * (logLik(m1) - logLik(m0)), df = .df, lower.tail=FALSE))
         if(class(pvalue)=="try-error")
           return(NA)
         else
