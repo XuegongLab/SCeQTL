@@ -9,7 +9,7 @@ Hu Yue <y-hu10@qq.com>
 
 ## Installation
 
-To install the developmental version from [GitHub](https://github.com/XuegongLab/SCeQTL):
+To install the developmental version from [GitHub](https://github.com/XuegongLab/SCeQTL) (recommended):
 
 ```r
 if(!require(devtools)) install.packages("devtools")
