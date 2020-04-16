@@ -44,7 +44,7 @@ cal.pvalue <- function(gene, snp, thread = 8, remove_outlier = TRUE,EM = TRUE, d
 
         if(type==0){
           m0 <- try(zeroinfl(expression ~ snp|1, data = sample.data, dist = dist, EM = EM))
-          if(class(pvalue)=="try-error"){
+          if(class(m0)=="try-error"){
             message("\twarning: no valid set of coefficients has been found\n")
             return(NA)
           }
@@ -52,7 +52,7 @@ cal.pvalue <- function(gene, snp, thread = 8, remove_outlier = TRUE,EM = TRUE, d
         }
         else if(type==1){
           m0 <- try(zeroinfl(expression ~ 1|snp, data = sample.data, dist = dist, EM = EM))
-          if(class(pvalue)=="try-error"){
+          if(class(m0)=="try-error"){
             message("\twarning: no valid set of coefficients has been found\n")
             return(NA)
           }
@@ -60,7 +60,7 @@ cal.pvalue <- function(gene, snp, thread = 8, remove_outlier = TRUE,EM = TRUE, d
         }
         else{
           m0 <- try(zeroinfl(expression ~ 1, data = sample.data, dist = dist, EM = EM))
-          if(class(pvalue)=="try-error"){
+          if(class(m0)=="try-error"){
             message("\twarning: no valid set of coefficients has been found\n")
             return(NA)
           }
