@@ -44,25 +44,33 @@ cal.pvalue <- function(gene, snp, thread = 8, remove_outlier = TRUE,EM = TRUE, d
 
         if(type==0){
           m0 <- try(zeroinfl(expression ~ snp|1, data = sample.data, dist = dist, EM = EM))
-          if(class(m0)=="try-error")
+          if(class(pvalue)=="try-error"){
+            message("\twarning: no valid set of coefficients has been found\n")
             return(NA)
+          }
           .df <- 1
         }
         else if(type==1){
           m0 <- try(zeroinfl(expression ~ 1|snp, data = sample.data, dist = dist, EM = EM))
-          if(class(m0)=="try-error")
+          if(class(pvalue)=="try-error"){
+            message("\twarning: no valid set of coefficients has been found\n")
             return(NA)
+          }
           .df <- 1
         }
         else{
           m0 <- try(zeroinfl(expression ~ 1, data = sample.data, dist = dist, EM = EM))
-          if(class(m0)=="try-error")
+          if(class(pvalue)=="try-error"){
+            message("\twarning: no valid set of coefficients has been found\n")
             return(NA)
+          }
           .df <- 2
         }
         pvalue = try(pchisq(2 * (logLik(m1) - logLik(m0)), df = .df, lower.tail=FALSE))
-        if(class(pvalue)=="try-error")
+        if(class(pvalue)=="try-error"){
+          message("\twarning: no valid set of coefficients has been found\n")
           return(NA)
+        }
         else
           return(pvalue)
     }
