@@ -60,7 +60,11 @@ cal.pvalue <- function(gene, snp, thread = 8, remove_outlier = TRUE,EM = TRUE, d
             return(NA)
           .df <- 2
         }
-        return(pchisq(2 * (logLik(m1) - logLik(m0)), df = .df, lower.tail=FALSE))
+        pvalue = try(pchisq(2 * (logLik(m1) - logLik(m0)), df = .df, lower.tail=FALSE), silent = TRUE)
+        if(class(pvalue)=="try-error")
+          return(NA)
+        else
+          return(pvalue)
     }
     if (type == 0) 
         message("Identyfing non-zero part difference...\n")
