@@ -87,15 +87,13 @@ cal.pvalue <- function(gene, snp, thread = 8, remove_outlier = TRUE,EM = TRUE, d
     result = foreach(j=1:snp.count) %dopar% {zeroinfl_model(gene[i,],snp[j,],remove_outlier=remove_outlier,dist=dist,EM=EM,type=type)}
     pvalue = rbind(pvalue,result)
   }
-  gene.name = rep(row.names(gene), each = snp.count)
-  if(is.null(row.names(snp))){
+  gene.name = rep(row.names(gene), times = snp.count)
+  if (is.null(row.names(snp))) {
     snp.raw.name = 1:snp.count
-  }else
-    snp.raw.name = row.names(snp)
-  snp.name = list()
-  for(i in 1:gene.count)
-    snp.name = c(snp.name, snp.raw.name)
-  result = data.frame(gene.name, unlist(snp.name), unlist(pvalue))
+  }
+  else snp.raw.name = row.names(snp)
+  snp.name = rep(snp.raw.name, each = gene.count)
+  result = data.frame(gene.name, snp.name, unlist(pvalue))
   colnames(result) <- c("gene","snp","pvalue")
   return(result)
 }
