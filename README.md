@@ -100,24 +100,24 @@ SCeQTL::cal.qvalue(gene[1:10,], snp)
 Then you may interested in the significant gene-snp pairs. You could stat and visualize it by `check.sample`. Here take the most significant pair for example.
 
 ```{r demo1, eval = FALSE}
-SCeQTL::check.sample(gene[rownames(gene)=='ARID3A',], snp[10,])
+SCeQTL::check.sample(gene["CDC5L",], snp[10, ])
 ```
 
 Then you could get the statistic about the pair and a boxplot showing the relationship.
 
 ```
-zero ratio of group 0 0.08074534 
-zero ratio of group 1 0.05660377 
-zero ratio of group 2 0.07674419 
-mean of group 0:  105.6087 
-mean of group 1:  120.1486 
-mean of group 2:  134.3442 
-non-zero part mean of group 0:  114.8851 
-non-zero part mean of group 1:  127.3575 
-non-zero part mean of group 2:  145.5113 
-non-zero part standard error of group 0:  129.1127 
-non-zero part standard error of group 1:  144.3739 
-non-zero part standard error of group 2:  150.4358 
+zero ratio of group 0 0.02004008 
+zero ratio of group 1 0.006944444 
+zero ratio of group 2 0 
+mean of group 0:  286.8818 
+mean of group 1:  302.4861 
+mean of group 2:  318.8277 
+non-zero part mean of group 0:  292.7485 
+non-zero part mean of group 1:  304.6014 
+non-zero part mean of group 2:  318.8277 
+non-zero part standard error of group 0:  282.2443 
+non-zero part standard error of group 1:  292.6688 
+non-zero part standard error of group 2:  288.2995 
 ```
 ![boxplot](./data/boxplot.png)
 
