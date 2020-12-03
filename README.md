@@ -30,7 +30,7 @@ install.packages(<source_code_file>, repos=NULL, type="source")
        qvalue
        ggplot2
        doParallel
-       pscl
+       pscl(<=1.5.2)
 
 ## Input:
 
