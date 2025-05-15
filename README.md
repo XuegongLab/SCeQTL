@@ -6,7 +6,7 @@ Packages](http://r-pkgs.had.co.nz/) is a book based around this workflow.
 ## Authors
 Hu Yue <y-hu10@qq.com>
 
-Xi Xi <xix19@mails.tsinghua.edu.cn>
+Xi Xi <xwx9798@gmail.com>
 
 
 ## Installation
